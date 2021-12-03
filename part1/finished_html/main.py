@@ -15,10 +15,22 @@
 #      (используя язык html разметки).
 #
 #
-app = # TODO инициализируйте приложение здесь
+
+from flask import Flask
+app = Flask(__name__)# TODO инициализируйте приложение здесь
 
 # TODO напишите view-функции здесь
+@app.route("/")
+def main_page():
+    return "<h1>Главная страничка</h1>"
 
+@app.route("/catalog/")
+def cat_page():
+    return "<h1>Страничка каталога</h1>"
+
+@app.route("/settings/")
+def settt_page():
+    return "<h1>Страничка настроек</h1>"
 
 if __name__=="__main__":
     app.run()

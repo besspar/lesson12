@@ -15,10 +15,26 @@
 #
 # P.S. В данном задании не используйте язык разметки html.
 #      тестироваться будет только текст.
+from flask import Flask
 
-app = # TODO инициализируйте приложение здесь
-
+# TODO инициализируйте приложение здесь
+app = Flask(__name__)
 # TODO напишите view-функции здесь
+@app.route("/")
+def main_page():
+    return "Это главная страница"
+
+@app.route("/feed/")
+def feed_page():
+    return "Это страница ленты"
+
+@app.route("/feedback/")
+def feedback_page():
+    return "Тут вы можете оставить обратную связь"
+
+@app.route("/profile/")
+def feedbackers_page():
+    return "А это информация про пользователя"
 
 if __name__ == "__main__":
     app.run()

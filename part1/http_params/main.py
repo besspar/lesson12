@@ -24,35 +24,55 @@
 # 
 
 from flask import Flask, request
-app = # TODO инициализируйте приложение здесь
+app = Flask(__name__)# TODO инициализируйте приложение здесь
 
-locations = [
-    "Москва",
-    "Санкт-Петербург",
-    "Новосибирск",
-    "Екатеринбург",
-    "Казань",
-    "Нижний Новгород",
-    "Челябинск",
-    "Самара",
-    "Омск",
-    "Ростов-на-Дону",
-    "Уфа",
-    "Красноярск",
-    "Воронеж",
-    "Пермь",
-    "Волгоград",
-    "Краснодар",
-    "Волгоград",
-    "Саратов",
-    "Тюмень",
-    "Тольятти",
-    "Ижевск",
-]
+
+
 
 
 # TODO напишите view-функцию здесь
+@app.route("/")
+def main():
+    return "Main page"
 
+@app.route("/search")
+def search_page():
+    locations = [
+        "Москва",
+        "Санкт-Петербург",
+        "Новосибирск",
+        "Екатеринбург",
+        "Казань",
+        "Нижний Новгород",
+        "Челябинск",
+        "Самара",
+        "Омск",
+        "Ростов-на-Дону",
+        "Уфа",
+        "Красноярск",
+        "Воронеж",
+        "Пермь",
+        "Волгоград",
+        "Краснодар",
+        "Волгоград",
+        "Саратов",
+        "Тюмень",
+        "Тольятти",
+        "Ижевск",
+    ]
+    search = request.args.get("city")
+    if search is None:
+        return "Введите параметр city"
+    templ = []
+    search_for = ""
+    for item in locations:
+        if item.lower().startswith(search.lower()):
+            templ.append(item)
+    if len(templ):
+        search_for = ", ".join(templ)
+        return f'Ищем {search_for}'
+    else:
+        return "No cities"
 
 if __name__ == '__main__':
     app.run()

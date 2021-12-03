@@ -1,7 +1,7 @@
 # У вас есть подготовленный шаблон. 
 # Передайте в него переменные "username" , "phone", "location"
 
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 
 
@@ -11,10 +11,15 @@ variables = {
     "location": "Москва"
 }
 
+
 @app.route('/sign-in/')
 def sign_in():
+    username = "NAME"
+    phone = "phone"
+    location = "location"
     # TODO напишите view-функцию здесь
-    pass
+    return render_template('/ready_template/templates/index.html', username=variables.username, phone=variables.phone, location=variables.location)
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     app.run()
